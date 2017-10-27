@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  backend:
+    image: elixir-backend
+    command: ./docker/dev-start.sh
+    build:
+      context: backend/
+    links:
+      - postgres
+    ports:
+      - 4000:4000
+  postgres:
+    image: postgres:10
+    environment:
+        POSTGRES_PASSWORD: password
+        POSTGRES_DB: api_dev
